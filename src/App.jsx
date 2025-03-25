@@ -1,50 +1,20 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Link,
-  Outlet,
-  Route,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes } from "react-router";
 
-import Home from "./components/Home.jsx";
-import Details from "./components/Details.jsx";
-
-// This component simply renders a navigation bar
-const Navbar = () => {
-  return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center text-white">
-        My Pokédex
-      </div>
-    </nav>
-  );
-};
-
-// This is a Layout component, using React's composable nature
-const MainLayout = () => {
-  return (
-    <>
-      <Navbar />
-      <div className="container mx-auto">
-        {/* The Outlet component is a placeholder for children components under this route */}
-        <Outlet />
-      </div>
-    </>
-  );
-};
-
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<MainLayout />}>
-      <Route index element={<Home />} />
-      <Route path="about" element={<Details />} />
-    </Route>
-  )
-);
+import MainLayout from "./layout/Mainlayout.jsx";
+import Home from "./pages/Home.jsx";
+import Details from "./pages/Details.jsx";
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="pokemon/ :name" element={<Details />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
