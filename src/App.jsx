@@ -14,7 +14,7 @@ import Details from "./components/Details.jsx";
 const Navbar = () => {
   return (
     <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center text-white">
         My Pokédex
       </div>
     </nav>
