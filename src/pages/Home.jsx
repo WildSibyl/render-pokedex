@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { usePokeData } from "../hooks/usePokeData";
+import favHeartUnselected from "../assets/favheart_unselected.png";
+import favHeartHovered from "../assets/favheart_hovered.png";
+import favHeartSelected from "../assets/favheart_selected.png";
 
 const Home = () => {
   const { pokemonList, loading, error } = usePokeData(); // Get all 150 Pokémon
@@ -56,25 +59,30 @@ const Home = () => {
           key={pokemon.id}
           className="rounded-2xl shadow-md px-4 flex flex-col items-center text-center border-gray-400 border-solid border-2 hover:cursor-pointer group"
         >
-            <Link
-              to={`/pokemon/${pokemon.id}`}
-            >
-          <h2 className="text-xl font-bold bg-white rounded-lg w-[95%] py-1 mt-2 z-10">
-            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
-          </h2>
-          <div className="overflow-hidden">
-            <img
-              className="bg-white rounded-lg p-4 transition duration-300 group-hover:scale-110 z-0"
-              src={
-                pokemon.sprites.other["official-artwork"].front_default ||
-                "placeholder.png"
-              }
-              alt={pokemon.name}
-            />
-          </div>
-          <p className="text-gray-900 bg-white rounded-lg mx-4 w-[95%] z-10 mb-4">
-            # {String(pokemon.id).padStart(3, "0")}
-          </p>
+          <Link
+            to={`/pokemon/${pokemon.id}`}
+          >
+            <h2 className="text-xl font-bold bg-white rounded-lg w-[95%] py-1 mt-2 z-10">
+              {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+            </h2>
+            <div className="overflow-hidden">
+              <img
+                className="bg-white rounded-lg p-4 transition duration-300 group-hover:scale-110 z-0"
+                src={
+                  pokemon.sprites.other["official-artwork"].front_default ||
+                  "placeholder.png"
+                }
+                alt={pokemon.name}
+              />
+            </div>
+            <div className="flex flex-row justify-between w-full mb-4">
+              <p className="text-gray-900 bg-white rounded-lg mx-4 w-[95%] z-10 ml-4">
+                # {String(pokemon.id).padStart(3, "0")}
+              </p>
+              <button className="mx-4 w-[25px] z-10 mr-4">
+                <img src="" alt="Favorite button" />
+              </button>
+            </div>
           </Link>
         </div>
       ))}
